@@ -33,14 +33,14 @@ export BIDS_DIR=${BASEDIR}/data/local/bids
 ## these folders envs need to be set up for this script to run properly 
 ## see notebooks/00_setting_up_envs.md for the set up instructions
 export FMRIPREP_HOME=${BASEDIR}/templates
-export SING_CONTAINER=${BASEDIR}/containers/mriqc-22.0.6.simg
+export SING_CONTAINER=${BASEDIR}/containers/mriqc-24.0.0.simg
 
 
 ## setting up the output folders
 # export OUTPUT_DIR=${BASEDIR}/data/local/fmriprep  # use if version of fmriprep >=20.2
-export OUTPUT_DIR=${BASEDIR}/data/local/mriqc # use if version of fmriprep <=20.1
+export OUTPUT_DIR=${BASEDIR}/data/local/derivatives/mriqc/24.0.0 # use if version of fmriprep <=20.1
 
-# export LOCAL_FREESURFER_DIR=${SCRATCH}/${STUDY}/data/derived/freesurfer-6.0.1
+
 project_id=$(cat ${BASEDIR}/project_id)
 export WORK_DIR=${BBUFFER}/SCanD/${project_id}/mriqc
 export LOGS_DIR=${BASEDIR}/logs
@@ -61,15 +61,6 @@ else
 fi
 
 
-## set singularity environment variables that will point to the freesurfer license and the templateflow bits
-# export SINGULARITYENV_TEMPLATEFLOW_HOME=/home/fmriprep/.cache/templateflow
-# Make sure FS_LICENSE is defined in the container.
-export SINGULARITYENV_FS_LICENSE=/home/mriqc/.freesurfer.txt
-
-# # Remove IsRunning files from FreeSurfer
-# for subject in $SUBJECTS: do
-#     find ${LOCAL_FREESURFER_DIR}/sub-$subject/ -name "*IsRunning*" -type f -delete
-# done
 
 
 singularity run --cleanenv \
@@ -84,8 +75,8 @@ singularity run --cleanenv \
     --nprocs 12 \
     --ants-nthreads 8 \
     --verbose-reports \
-    --ica \
     --mem_gb 12 \
+    --no-datalad-get \
     --no-sub
 
 exitcode=$?
