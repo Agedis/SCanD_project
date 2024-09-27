@@ -96,7 +96,7 @@ Currently this repo is going to be set up for running things on SciNet Niagara c
 
 ## Organize your data into BIDS
 
-This is the longest - most human intensive - step. But it will make everything else possible! BIDS is really a naming convention for your MRI data that will make it easier for other people, the consortium (as well as the software) to understand what your data consists of (e.g. what scan types, how many participants, how many sessions). Converting your data into BIDS may require some renaming and reorganizing. No coding is required, but there are now a lot of different software projects out there to help with the process.
+This is the longest - most human intensive - step. But it will make everything else possible! BIDS is really a naming convention for your MRI data that will make it easier for other people in the consortium (as well as the software/ pipeline that you are using) to understand what your data is (e.g. what scan types, how many participants, how many sessions). Converting your data into BIDS may require some renaming and reorganizing. No coding is required, but there are now a lot of different software projects out there to help with the process.
 
 For amazing tools and tutorials for learning how to BIDS convert your data, check out the [BIDS starter kit](https://bids-standard.github.io/bids-starter-kit/).
 
@@ -138,7 +138,7 @@ For a test run of this available code you can work with a test dataset from open
 
 You can do this by either copying "scp -r", linking `ln -s` or moving the data to this place - it's your choice.
 
-** If you are copying data from another computer or server, you should use the SciNet datamover (dm) node, not the login node! **
+##### If you are copying data from another computer or server, you should use the SciNet datamover (dm) node, not the login node!
 
 To switch into the dm node: 
 ```sh
@@ -700,7 +700,7 @@ To guess - we add this line into the middle of the top level json ().
 "PhaseEncodingDirection": "j-",
 ```
 
-note: now - thanks to the people at repronim - we can also add the repronim derivatives!
+note: now - thanks to the people at repronim - we can also add the repronim derivatives !
 
 ```{r}
 cd ${SCRATCH}/SCanD_project/data/local/ls
